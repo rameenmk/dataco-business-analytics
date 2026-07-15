@@ -1,0 +1,55 @@
+{
+  "name": "DataCo Supply Chain",
+  "dataColors": [
+    "#16324F",
+    "#2C7A7B",
+    "#DD8A3E",
+    "#C1443C",
+    "#5A6B7B",
+    "#9BB4C4",
+    "#3E6B8A",
+    "#8AA891"
+  ],
+  "background": "#FFFFFF",
+  "secondaryBackground": "#F4F6F8",
+  "tableAccent": "#2C7A7B",
+  "firstLevelElements": "#1A202C",
+  "secondLevelElements": "#4A5568",
+  "thirdLevelElements": "#E2E8F0",
+  "fourthLevelElements": "#A0AEC0",
+  "good": "#2C7A7B",
+  "neutral": "#DD8A3E",
+  "bad": "#C1443C",
+  "maximum": "#C1443C",
+  "center": "#DD8A3E",
+  "minimum": "#2C7A7B",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#1A202C" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 11, "color": "#1A202C" },
+    "callout": { "fontFace": "Segoe UI Light", "fontSize": 30, "color": "#16324F" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#4A5568" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E2E8F0" } }, "radius": 10 }],
+        "title": [{
+          "show": true,
+          "fontColor": { "solid": { "color": "#1A202C" } },
+          "fontSize": 12,
+          "fontFamily": "Segoe UI Semibold",
+          "alignment": "left"
+        }],
+        "categoryAxis": [{ "gridlineShow": false, "showAxisTitle": true }],
+        "valueAxis": [{ "gridlineShow": true, "gridlineColor": { "solid": { "color": "#EDF1F4" } } }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#16324F" } }, "fontSize": 28, "fontFamily": "Segoe UI Light" }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#4A5568" } }, "fontSize": 11 }]
+      }
+    }
+  }
+}

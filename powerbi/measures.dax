@@ -1,0 +1,72 @@
+// =====================================================================
+// DataCo Supply Chain - Power BI Measures (DAX)
+// Create a table called _Measures (Home > Enter Data, empty) and add these,
+// so all measures live in one place instead of scattered across tables.
+// =====================================================================
+
+// ---------- Volume ----------
+Total Order Lines = COUNTROWS ( fact_order_items )
+
+Total Orders = DISTINCTCOUNT ( fact_order_items[order_id] )
+
+
+// ---------- Money ----------
+Total Sales = SUM ( fact_order_items[sales] )
+
+Total Profit = SUM ( fact_order_items[order_item_profit] )
+
+Net Margin % = DIVIDE ( [Total Profit], [Total Sales] )
+
+Avg Profit per Line = DIVIDE ( [Total Profit], [Total Order Lines] )
+
+
+// ---------- Delivery reliability ----------
+Late Deliveries =
+CALCULATE (
+    [Total Order Lines],
+    fact_order_items[delivery_status] = "Late delivery"
+)
+
+Late Delivery Rate % = DIVIDE ( [Late Deliveries], [Total Order Lines] )
+
+On-Time Delivery Rate % = 1 - [Late Delivery Rate %]
+
+Avg Promised Days = AVERAGE ( fact_order_items[days_shipping_scheduled] )
+
+Avg Actual Days = AVERAGE ( fact_order_items[days_shipping_real] )
+
+Delivery Gap (Days) = [Avg Actual Days] - [Avg Promised Days]
+
+
+// ---------- Risk / exposure ----------
+Revenue at Risk =
+CALCULATE (
+    [Total Sales],
+    fact_order_items[delivery_status] = "Late delivery"
+)
+
+Revenue at Risk % = DIVIDE ( [Revenue at Risk], [Total Sales] )
+
+
+// ---------- Loss detection ----------
+Lines at Loss =
+CALCULATE (
+    [Total Order Lines],
+    fact_order_items[order_item_profit] < 0
+)
+
+% Lines at Loss = DIVIDE ( [Lines at Loss], [Total Order Lines] )
+
+
+// ---------- Discount ----------
+Avg Discount Rate = AVERAGE ( fact_order_items[order_item_discount_rate] )
+
+
+// ---------- Optional: analyse by SHIPPING date instead of order date ----------
+// dim_date is joined twice (order_date_key active, shipping_date_key inactive).
+// This measure flips to the shipping-date relationship on demand.
+Late Deliveries (by ship date) =
+CALCULATE (
+    [Late Deliveries],
+    USERELATIONSHIP ( fact_order_items[shipping_date_key], dim_date[date_key] )
+)
