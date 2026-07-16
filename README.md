@@ -56,7 +56,7 @@ one is built the way a data team ships work:
 
 ## The prediction model, briefly
 
-`model/late_delivery_prediction.ipynb` predicts whether an order will be late
+[`model/late_delivery_prediction.ipynb`](model/late_delivery_prediction.ipynb) predicts whether an order will be late
 using only what's known at order time (shipping mode, promised days, market,
 segment, category, quantity, discount, price). It reaches **~70% accuracy** versus
 a 55% base rate, and its feature weights confirm First Class as the single
